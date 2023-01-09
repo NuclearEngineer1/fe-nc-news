@@ -1,4 +1,4 @@
-import fetchArticles from "../api-utils";
+import { fetchArticles } from "../api-utils";
 import { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 
@@ -16,9 +16,9 @@ const ArticleList = () => {
       <ul>
         {articles.map((article) => {
           return (
-            <li key={article.article_id}>
-              <ArticleCard {...article} />
-            </li>
+
+            <ArticleCard key={article.article_id} {...article} />
+
           );
         })}
       </ul>

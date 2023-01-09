@@ -3,14 +3,14 @@ const ArticleCard = (article) => {
   const dateString = dateObj.toString()
 
   return (  
-  <div>
-    <h1>{article.title}</h1>
-    <h2> Author: {article.author} </h2>
+  <li>
+    <h2>{article.title}</h2>
+    <h3> Author: {article.author} </h3>
     <p>Created at: {dateString}</p>
     <p>Topic: {article.topic}</p>
     <p> Votes: {article.votes} </p>
     <p> Comments: {article.comment_count}</p>
-    </div>
+    </li>
   );
   
 }

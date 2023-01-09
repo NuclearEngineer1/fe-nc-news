@@ -1,4 +1,4 @@
-const fetchArticles = () => {
+export const fetchArticles = () => {
   return fetch('https://liams-nc-news.onrender.com/api/articles').then((res) => {
     return res.json();
 
@@ -6,6 +6,3 @@ const fetchArticles = () => {
     return res.articles
    })
 } 
-
-
-export default fetchArticles
