@@ -8,7 +8,7 @@ const ArticleCard = (props) => {
     <li key={props.article_id}>
       <h2>{props.title}</h2>
       <h3> Author: {props.author} </h3>
-      <p>Created at: {dateString}</p>
+      <p>Created: {dateString}</p>
       <p>Topic: {props.topic}</p>
       <p> Votes: {props.votes} </p>
       <p> Comments: {props.comment_count}</p>
