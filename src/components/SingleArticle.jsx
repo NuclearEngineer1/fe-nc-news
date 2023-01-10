@@ -20,7 +20,7 @@ const SingleArticle = () => {
     <div>
     <h2>{currentArticle.title}</h2>
     <h3> Author: {currentArticle.author} </h3>
-    <p>Created at: {dateString}</p>
+    <p>Created: {dateString}</p>
     <p>Topic: {currentArticle.topic}</p>
       <p>{currentArticle.body}</p>
     <p> Votes: {currentArticle.votes} </p>
