@@ -1,18 +1,24 @@
-const ArticleCard = (article) => {
-  const dateObj = new Date(article.created_at)
-  const dateString = dateObj.toString()
+import { Link } from "react-router-dom";
 
-  return (  
-  <li>
-    <h2>{article.title}</h2>
-    <h3> Author: {article.author} </h3>
-    <p>Created at: {dateString}</p>
-    <p>Topic: {article.topic}</p>
-    <p> Votes: {article.votes} </p>
-    <p> Comments: {article.comment_count}</p>
+const ArticleCard = (props) => {
+  const dateObj = new Date(props.created_at);
+  const dateString = dateObj.toString();
+
+  return (
+    <li key={props.article_id}>
+      <h2>{props.title}</h2>
+      <h3> Author: {props.author} </h3>
+      <p>Created at: {dateString}</p>
+      <p>Topic: {props.topic}</p>
+      <p> Votes: {props.votes} </p>
+      <p> Comments: {props.comment_count}</p>
+      <Link to={`article/${props.article_id}`}>
+      <button onClick={() => props.setCurrentArticleID(props.article_id)}>
+        Go to article
+      </button>
+      </Link>
     </li>
   );
-  
-}
+};
 
-export default ArticleCard
+export default ArticleCard;

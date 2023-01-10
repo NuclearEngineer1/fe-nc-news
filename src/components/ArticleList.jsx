@@ -2,7 +2,7 @@ import { fetchArticles } from "../api-utils";
 import { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 
-const ArticleList = () => {
+const ArticleList = (props) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -16,9 +16,11 @@ const ArticleList = () => {
       <ul>
         {articles.map((article) => {
           return (
-
-            <ArticleCard key={article.article_id} {...article} />
-
+            <ArticleCard
+              {...article}
+              setCurrentArticleID={props.setCurrentArticleID}
+              currentArticleID={props.currentArticleID}
+            />
           );
         })}
       </ul>
