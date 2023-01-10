@@ -20,6 +20,7 @@ const ArticleList = (props) => {
               {...article}
               setCurrentArticleID={props.setCurrentArticleID}
               currentArticleID={props.currentArticleID}
+              key={article.article_id}
             />
           );
         })}
