@@ -21,10 +21,10 @@ function App() {
           ]}
         />
         <Route
-          path={`/singleArticle`}
+          path={`/article/:article_id`}
           element={[
             <Header />,
-            <SingleArticle currentArticleID={currentArticleID} />,
+            <SingleArticle />,
           ]}
         />
       </Routes>

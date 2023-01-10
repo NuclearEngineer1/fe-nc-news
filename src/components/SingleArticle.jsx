@@ -1,17 +1,19 @@
 import { fetchArticleByID } from '../api-utils'
 import { useEffect, useState } from "react"
+import {useParams} from "react-router-dom"
 
-const SingleArticle = (props) => {
+const SingleArticle = () => {
   const [currentArticle, setCurrentArticle] = useState({})
   const dateObj = new Date(currentArticle.created_at);
   const dateString = dateObj.toString();
+  const { article_id } = useParams()
 
 
   useEffect(() => {
-    fetchArticleByID(props.currentArticleID).then((article) => {
+    fetchArticleByID(article_id).then((article) => {
       setCurrentArticle(article)
     })
-  }, [props.currentArticleID])
+  }, [article_id])
 
 
   return (

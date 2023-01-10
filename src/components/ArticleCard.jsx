@@ -12,7 +12,7 @@ const ArticleCard = (props) => {
       <p>Topic: {props.topic}</p>
       <p> Votes: {props.votes} </p>
       <p> Comments: {props.comment_count}</p>
-      <Link to={"/singleArticle"}>
+      <Link to={`article/${props.article_id}`}>
       <button onClick={() => props.setCurrentArticleID(props.article_id)}>
         Go to article
       </button>
