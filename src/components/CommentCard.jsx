@@ -1,6 +1,6 @@
 const CommentCard = (props) => {
   const dateObj = new Date(props.created_at);
-  const dateString = dateObj.toString();
+  const dateString = dateObj.toString()
 
   return (
     <li key={props.article_id}>
