@@ -2,7 +2,6 @@ import "./App.css";
 import Header from "./components/Header";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CommentList from "./components/CommentList";
 
@@ -14,18 +13,15 @@ function App() {
         <Route
           path="/"
           element={
-            <ArticleList
-              setCurrentArticleID={setCurrentArticleID}
-              currentArticleID={currentArticleID}
-            />
+            <ArticleList/>
           }
         />
         <Route
           path={`/article/:article_id`}
           element={
             <>
-              <SingleArticle currentArticleID={currentArticleID} />
-              <CommentList currentArticleID={currentArticleID} />
+              <SingleArticle/>
+              <CommentList/>
             </>
           }
         />
