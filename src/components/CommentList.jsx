@@ -9,21 +9,30 @@ const CommentList = (props) => {
 
   const [commentData, setCommentData] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    fetchComments(article_id).then((res) => setCommentData(res)).catch((err) => console.log(err));
+    fetchComments(article_id).then((res) => {
+    setCommentData(res)
+    setIsLoading(false);
+    })
+    .catch((err) => console.log(err));
   }, [article_id]);
 
-  return (
-    <div>
-      <h1>Comments</h1>
-      <CommentAdder commentData={commentData} setCommentData={setCommentData} currentArticleID={props.currentArticleID} />
-      <ul>
-        {commentData.map((comment) => {
-          return <CommentCard {...comment} key={comment.comment_id} />;
-        })}
-      </ul>
-    </div>
-  );
+  if (isLoading) {
+    return <p>Loading...</p>;
+  } else {
+    return (
+      <div>
+        <h1>Comments</h1>
+        <ul>
+          {commentData.map((comment) => {
+            return <CommentCard {...comment} />;
+          })}
+        </ul>
+      </div>
+    );
+  }
 };
 
-export default CommentList
+export default CommentList;

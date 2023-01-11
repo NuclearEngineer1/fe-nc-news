@@ -4,13 +4,20 @@ import ArticleCard from "./ArticleCard";
 
 const ArticleList = (props) => {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchArticles().then((articleData) => {
-      setArticles(articleData);
+      setArticles(articleData)
+      setIsLoading(false);
     });
-  }, []);
+  }, [articles]);
 
+
+    if (isLoading) {
+    return <div>Loading...</div>;
+  } else {
+  
   return (
     <div>
       <ul>

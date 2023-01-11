@@ -11,10 +11,10 @@ const SingleArticle = () => {
   const { article_id } = useParams();
   const [userViewVotes, setUserViewVotes] = useState(0);
   
-
   useEffect(() => {
     fetchArticleByID(article_id).then((article) => {
-      setCurrentArticle(article);
+      setCurrentArticle(article)
+      setIsLoading(false)
     });
   }, [article_id]);
 
@@ -41,6 +41,9 @@ const SingleArticle = () => {
         <p> Comments: {currentArticle.comment_count}</p>
       </div>
     );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   } else {
     return (
       <div>
