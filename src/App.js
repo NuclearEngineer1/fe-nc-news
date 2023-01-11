@@ -7,27 +7,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CommentList from "./components/CommentList";
 
 function App() {
-  const [currentArticleID, setCurrentArticleID] = useState(3);
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route
           path="/"
-          element={[
-            <Header />,
+          element={
             <ArticleList
               setCurrentArticleID={setCurrentArticleID}
               currentArticleID={currentArticleID}
-            />,
-          ]}
+            />
+          }
         />
         <Route
           path={`/article/:article_id`}
-          element={[
-            <Header />,
-            <SingleArticle />,
-            <CommentList />
-          ]}
+          element={
+            <>
+              <SingleArticle currentArticleID={currentArticleID} />
+              <CommentList currentArticleID={currentArticleID} />
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>

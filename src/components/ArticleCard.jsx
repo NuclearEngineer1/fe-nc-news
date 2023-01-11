@@ -5,7 +5,7 @@ const ArticleCard = (props) => {
   const dateString = dateObj.toString();
 
   return (
-    <li key={props.article_id}>
+    <li>
       <h2>{props.title}</h2>
       <h3> Author: {props.author} </h3>
       <p>Created: {dateString}</p>

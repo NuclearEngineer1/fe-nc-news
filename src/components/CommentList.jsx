@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
-import { fetchComments } from "../api-utils";
+import { fetchComments } from "../api-utils"
+import CommentAdder from "./CommentAdder";
 
-const CommentList = () => {
+const CommentList = (props) => {
   const { article_id } = useParams();
 
   const [commentData, setCommentData] = useState([]);
@@ -12,9 +13,10 @@ const CommentList = () => {
 
   useEffect(() => {
     fetchComments(article_id).then((res) => {
-      setCommentData(res);
-      setIsLoading(false);
-    });
+    setCommentData(res)
+    setIsLoading(false);
+    })
+    .catch((err) => console.log(err));
   }, [article_id]);
 
   if (isLoading) {

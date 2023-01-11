@@ -39,3 +39,10 @@ export const patchVotes = (article_id, voteCount) => {
     inc_votes: voteCount,
   });
 };
+
+export const postComment = (body, article_id) => {
+  return API.post(`/articles/${article_id}/comments`, {
+    username: "tickle122",
+    body: body,
+  });
+};

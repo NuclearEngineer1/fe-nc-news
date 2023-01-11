@@ -13,27 +13,27 @@ const ArticleList = (props) => {
     });
   }, [articles]);
 
-  if (isLoading) {
+
+    if (isLoading) {
     return <div>Loading...</div>;
   } else {
   
-    return (
-      <div>
-        <ul>
-          {articles.map((article) => {
-            return (
-              <ArticleCard
-                {...article}
-                setCurrentArticleID={props.setCurrentArticleID}
-                currentArticleID={props.currentArticleID}
-              />
-            );
-          })}
-        </ul>
-      </div>
-    );
-  };
-  
-}
+  return (
+    <div>
+      <ul>
+        {articles.map((article) => {
+          return (
+            <ArticleCard
+              {...article}
+              setCurrentArticleID={props.setCurrentArticleID}
+              currentArticleID={props.currentArticleID}
+              key={article.article_id}
+            />
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default ArticleList;

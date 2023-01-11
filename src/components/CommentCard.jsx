@@ -3,7 +3,7 @@ const CommentCard = (props) => {
   const dateString = dateObj.toString()
 
   return (
-    <li key={props.article_id}>
+    <li>
       <h2>Author: {props.author} </h2>
       <p>Created: {dateString}</p>
       <p>{props.body}</p>
