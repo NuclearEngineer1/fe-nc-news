@@ -9,7 +9,6 @@ const CommentAdder = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(props.commentData);
     props.setCommentData((currComments) => {
       return [
         {
@@ -40,7 +39,6 @@ const CommentAdder = (props) => {
     );
   } else {
     return (
-      <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Add comment (max 250 characters):</label>
 
@@ -52,7 +50,6 @@ const CommentAdder = (props) => {
 
           <input type="submit" value="Add Comment"></input>
         </form>
-      </div>
     );
   }
 };

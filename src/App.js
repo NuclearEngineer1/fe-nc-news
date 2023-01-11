@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CommentList from "./components/CommentList";
 
 function App() {
-  const [currentArticleID, setCurrentArticleID] = useState(0);
   return (
     <BrowserRouter>
       <Header />
