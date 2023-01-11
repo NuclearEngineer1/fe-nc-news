@@ -2,14 +2,24 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "https://liams-nc-news.onrender.com/api" });
 
-export const fetchArticles = () => {
-  return fetch("https://liams-nc-news.onrender.com/api/articles")
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      return res.articles;
-    });
+export const fetchArticles = (currentTopic) => {
+  if (currentTopic === "All") {
+    return fetch("https://liams-nc-news.onrender.com/api/articles")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        return res.articles;
+      });
+  } else {
+    return fetch(`https://liams-nc-news.onrender.com/api/articles?topic=${currentTopic}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        return res.articles;
+      });
+  }
 };
 
 export const fetchArticleByID = (id) => {
@@ -31,6 +41,19 @@ export const fetchComments = (article_id) => {
     })
     .then((res) => {
       return res.comments;
+    });
+};
+
+
+export const fetchTopics = () => {
+  return fetch(
+    "https://liams-nc-news.onrender.com/api/topics"
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      return res.topics;
     });
 };
 
