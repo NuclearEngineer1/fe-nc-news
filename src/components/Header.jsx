@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom"
+import "../CSS_files/Header.css"
+
 const Header = () => {
   return (
-    <h1>
+    <Link class="Link" to="/">
+    <h1 class="title">
       NC News
     </h1>
+    </Link>
   )
 }
 

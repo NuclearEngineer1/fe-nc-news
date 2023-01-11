@@ -1,6 +1,7 @@
 import { fetchArticles } from "../api-utils";
 import { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
+import "../CSS_files/ArticleList.css"
 
 const ArticleList = (props) => {
   const [articles, setArticles] = useState([]);
@@ -20,7 +21,7 @@ const ArticleList = (props) => {
   
     return (
       <div>
-        <ul>
+        <ul class="ArticleList">
           {articles.map((article) => {
             return (
               <ArticleCard
