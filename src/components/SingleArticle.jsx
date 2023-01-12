@@ -6,8 +6,6 @@ import { patchVotes } from "../api-utils";
 const SingleArticle = () => {
   const [currentArticle, setCurrentArticle] = useState({});
   const [isError, setIsError] = useState(false);
-  const dateObj = new Date(currentArticle.created_at);
-  const dateString = dateObj.toString();
   const { article_id } = useParams();
   const [userViewVotes, setUserViewVotes] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +16,9 @@ const SingleArticle = () => {
       setIsLoading(false);
     });
   }, [article_id]);
+
+  const dateObj = new Date(currentArticle.created_at);
+  const dateString = dateObj.toString();
 
   const handleVoteClick = (increment) => {
     setUserViewVotes((userViewVotes) => userViewVotes + increment);
