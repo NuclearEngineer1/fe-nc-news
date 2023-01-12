@@ -1,6 +1,7 @@
 import { fetchArticles, fetchTopics } from "../api-utils";
 import { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
+import "../CSS_files/ArticleList.css"
 
 const ArticleList = (props) => {
   const [articles, setArticles] = useState([]);

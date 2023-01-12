@@ -8,7 +8,7 @@ import CommentList from "./components/CommentList";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <Header class="Header"/>
       <Routes>
         <Route
           path="/"
