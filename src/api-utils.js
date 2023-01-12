@@ -2,24 +2,22 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "https://liams-nc-news.onrender.com/api" });
 
-export const fetchArticles = (currentTopic) => {
+export const fetchArticles = (currentTopic, sortBy, orderBy) => {
+  console.log(orderBy)
+  let url = "https://liams-nc-news.onrender.com/api/articles";
   if (currentTopic === "All") {
-    return fetch("https://liams-nc-news.onrender.com/api/articles")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res.articles;
-      });
+    url = `https://liams-nc-news.onrender.com/api/articles?sort_by=${sortBy}&order=${orderBy}`
   } else {
-    return fetch(`https://liams-nc-news.onrender.com/api/articles?topic=${currentTopic}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res.articles;
-      });
-  }
+    url = `https://liams-nc-news.onrender.com/api/articles?topic=${currentTopic}&sort_by=${sortBy}&order=${orderBy}`
+  };
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res)
+      return res.articles;
+    });
 };
 
 export const fetchArticleByID = (id) => {
@@ -44,11 +42,8 @@ export const fetchComments = (article_id) => {
     });
 };
 
-
 export const fetchTopics = () => {
-  return fetch(
-    "https://liams-nc-news.onrender.com/api/topics"
-  )
+  return fetch("https://liams-nc-news.onrender.com/api/topics")
     .then((res) => {
       return res.json();
     })
