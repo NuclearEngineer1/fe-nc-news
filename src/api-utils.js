@@ -12,7 +12,9 @@ export const fetchArticles = (currentTopic) => {
         return res.articles;
       });
   } else {
-    return fetch(`https://liams-nc-news.onrender.com/api/articles?topic=${currentTopic}`)
+    return fetch(
+      `https://liams-nc-news.onrender.com/api/articles?topic=${currentTopic}`
+    )
       .then((res) => {
         return res.json();
       })
@@ -44,11 +46,8 @@ export const fetchComments = (article_id) => {
     });
 };
 
-
 export const fetchTopics = () => {
-  return fetch(
-    "https://liams-nc-news.onrender.com/api/topics"
-  )
+  return fetch("https://liams-nc-news.onrender.com/api/topics")
     .then((res) => {
       return res.json();
     })
@@ -68,4 +67,8 @@ export const postComment = (body, article_id) => {
     username: "tickle122",
     body: body,
   });
+};
+
+export const deleteComment = (comment_id) => {
+  return API.delete(`/comments/${comment_id}`);
 };

@@ -28,7 +28,7 @@ const CommentList = (props) => {
         <CommentAdder setCommentData={setCommentData} />
         <ul>
           {commentData.map((comment) => {
-            return <CommentCard {...comment} key={comment.comment_id} />;
+            return <CommentCard {...comment} key={comment.comment_id} setCommentData={setCommentData} commentData={ commentData} />;
           })}
         </ul>
       </div>
