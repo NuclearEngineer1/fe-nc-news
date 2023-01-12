@@ -3,7 +3,6 @@ import axios from "axios";
 const API = axios.create({ baseURL: "https://liams-nc-news.onrender.com/api" });
 
 export const fetchArticles = (currentTopic, sortBy, orderBy) => {
-  console.log(orderBy)
   let url = "https://liams-nc-news.onrender.com/api/articles";
   if (currentTopic === "All") {
     url = `https://liams-nc-news.onrender.com/api/articles?sort_by=${sortBy}&order=${orderBy}`
@@ -15,7 +14,6 @@ export const fetchArticles = (currentTopic, sortBy, orderBy) => {
       return res.json();
     })
     .then((res) => {
-      console.log(res)
       return res.articles;
     });
 };

@@ -67,12 +67,12 @@ const ArticleList = (props) => {
         name="sortBy"
         id="sortBy"
       >
-        <option value="title">title</option>
-        <option value="topic">topic</option>
-        <option value="author">author</option>
-        <option value="created_at">date</option>
-        <option value="votes">votes</option>
-        <option value="comment_count">comments</option>
+        <option value="title">Title</option>
+        <option value="topic">Topic</option>
+        <option value="author">Author</option>
+        <option value="created_at">Date</option>
+        <option value="votes">Votes</option>
+        <option value="comment_count">Comments</option>
       </select>
 
       <label htmlFor="orderBy">Order&nbsp;&nbsp;</label>
@@ -83,8 +83,8 @@ const ArticleList = (props) => {
         name="orderBy"
         id="orderBy"
       >
-        <option value="asc">asc</option>
-        <option value="desc">desc</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
       </select>
       
       {isLoading ? (
