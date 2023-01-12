@@ -9,48 +9,51 @@ const ArticleList = (props) => {
   const [topics, setTopics] = useState([]);
 
   const handleChangeTopic = (event) => {
-    setIsLoading(true)
+    setIsLoading(true);
     setCurrentTopic(event.target.value);
   };
-
-  fetchTopics().then((topicData) => {
-    setTopics(topicData.map((topic) => topic.slug));
-  });
 
   useEffect(() => {
     fetchArticles(currentTopic).then((articleData) => {
       setArticles(articleData);
       setIsLoading(false);
     });
-  }, [articles, currentTopic]);
+  }, [currentTopic]);
 
+  useEffect(() => {
+    fetchTopics().then((topicData) => {
+      setTopics(topicData.map((topic) => topic.slug));
+    });
+  }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div>
-        <label htmlFor="topics">Choose a topic:</label>
+  return (
+    <div>
+      <label htmlFor="topics">Choose a topic:</label>
 
-        <select onChange={handleChangeTopic} name="topics" id="topics">
-          <option value="All">All</option>
-          {topics.map((topic) => (
-            <option value={topic}>{topic}</option>
-          ))}
-        </select>
+      <select
+        value={currentTopic}
+        onChange={handleChangeTopic}
+        name="topics"
+        id="topics"
+      >
+        <option value="All">All</option>
+        {topics.map((topic) => (
+          <option key={topic} value={topic}>
+            {topic}
+          </option>
+        ))}
+      </select>
+      {isLoading ? (
+        <p> Loading...</p>
+      ) : (
         <ul>
           {articles.map((article) => {
-            return (
-              <ArticleCard
-                {...article}
-                key={article.article_id}
-              />
-            );
+            return <ArticleCard {...article} key={article.article_id} />;
           })}
         </ul>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default ArticleList;
