@@ -8,23 +8,20 @@ import CommentList from "./components/CommentList";
 function App() {
   return (
     <BrowserRouter>
-      <Header class="Header"/>
+      <Header class="Header" />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ArticleList/>
-          }
-        />
+        <Route path="/" element={<ArticleList />} />
         <Route
           path={`/article/:article_id`}
           element={
             <>
-              <SingleArticle/>
-              <CommentList/>
+              <SingleArticle />
+              <CommentList />
             </>
           }
         />
+        <Route path={"*"} element={<h1> 404: nothing to see here...</h1>}>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
