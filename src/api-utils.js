@@ -66,7 +66,7 @@ export const postComment = (body, article_id) => {
   return API.post(`/articles/${article_id}/comments`, {
     username: "tickle122",
     body: body,
-  });
+  })
 };
 
 export const deleteComment = (comment_id) => {

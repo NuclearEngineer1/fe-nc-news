@@ -17,7 +17,7 @@ const CommentAdder = (props) => {
           body: commentBody,
           created_at: Date.now(),
           votes: 0,
-          article_id: article_id,
+          article_id: article_id
         },
         ...currComments,
       ];
