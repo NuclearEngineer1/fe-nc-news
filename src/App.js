@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CommentList from "./components/CommentList";
 
 function App() {
   return (
@@ -14,10 +13,7 @@ function App() {
         <Route
           path={`/article/:article_id`}
           element={
-            <>
               <SingleArticle />
-              <CommentList />
-            </>
           }
         />
         <Route path={"*"} element={<h1> 404: nothing to see here...</h1>}>
