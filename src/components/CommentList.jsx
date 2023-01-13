@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import { fetchComments } from "../api-utils"
 import CommentAdder from "./CommentAdder";
+import "../CSS_files/CommentList.css"
 
 const CommentList = (props) => {
   const { article_id } = useParams();
@@ -26,9 +27,9 @@ const CommentList = (props) => {
       <div>
         <h1>Comments</h1>
         <CommentAdder setCommentData={setCommentData} />
-        <ul>
+        <ul class="CommentList">
           {commentData.map((comment) => {
-            return <CommentCard {...comment} key={comment.comment_id} />;
+            return <CommentCard {...comment} key={comment.comment_id} setCommentData={setCommentData} commentData={ commentData} />;
           })}
         </ul>
       </div>

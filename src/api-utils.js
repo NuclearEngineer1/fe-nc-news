@@ -62,3 +62,7 @@ export const postComment = (body, article_id) => {
     body: body,
   });
 };
+
+export const deleteComment = (comment_id) => {
+  return API.delete(`/comments/${comment_id}`);
+};

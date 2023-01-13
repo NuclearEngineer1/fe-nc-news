@@ -2,6 +2,7 @@ import { fetchArticleByID } from "../api-utils";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { patchVotes } from "../api-utils";
+import "../CSS_files/SingleArticle.css"
 
 const SingleArticle = () => {
   const [currentArticle, setCurrentArticle] = useState({});
@@ -50,11 +51,11 @@ const SingleArticle = () => {
     return (
       <div>
         <h2>{currentArticle.title}</h2>
-        <h3> Author: {currentArticle.author} </h3>
-        <p>Created: {dateString}</p>
-        <p>Topic: {currentArticle.topic}</p>
+        <h3> Author: &nbsp; {currentArticle.author} </h3>
+        <p>Created: &nbsp; {dateString}</p>
+        <p>Topic: &nbsp; {currentArticle.topic}</p>
         <p>{currentArticle.body}</p>
-        <p> Votes: {currentArticle.votes + userViewVotes} </p>
+        <p> Votes: &nbsp; {currentArticle.votes + userViewVotes} </p>
         <button
           onClick={() => {
             handleVoteClick(1);
@@ -69,7 +70,7 @@ const SingleArticle = () => {
         >
           👎
         </button>
-        <p> Comments: {currentArticle.comment_count}</p>
+        <p> Comments: &nbsp; {currentArticle.comment_count}</p>
       </div>
     );
   }
