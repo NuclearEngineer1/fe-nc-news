@@ -1,6 +1,7 @@
 import { postComment } from "../api-utils";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import "../CSS_files/CommentAdder.css"
 
 const CommentAdder = (props) => {
   const { article_id } = useParams();
@@ -39,7 +40,7 @@ const CommentAdder = (props) => {
     );
   } else {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} class="CommentAdder">
           <label htmlFor="name">Add comment (max 250 characters):</label>
 
           <input

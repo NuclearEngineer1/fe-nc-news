@@ -1,5 +1,6 @@
 import { deleteComment } from "../api-utils";
-import {useState} from "react"
+import { useState } from "react"
+import "../CSS_files/CommentCard.css"
 
 const CommentCard = (props) => {
   const dateObj = new Date(props.created_at);
@@ -24,7 +25,7 @@ const CommentCard = (props) => {
       });
       deleteComment(props.comment_id).catch((err) => {
         props.setCommentData((commentData) => {
-          return { comment, ...commentData };
+          return [ comment, ...commentData ];
         });
         setDeleteCommentError(true);
         console.log(err);
@@ -33,16 +34,12 @@ const CommentCard = (props) => {
   };
 
   return (
-    <li>
-      <h2>Author: {props.author} </h2>
-      <p>Created: {dateString}</p>
+    <li class="CommentCard">
+      <p>Author: &nbsp; {props.author} </p>
+      <p>Created: &nbsp; {dateString}</p>
       <p>{props.body}</p>
-      <p> Votes: {props.votes} </p>
-      {deleteCommentError ? (
-        <p> Sorry, there was an error deleting your comment.</p>
-      ) : (
-        <button onClick={handleDeleteComment}>Delete Comment</button>
-      )}
+      <p> Votes: &nbsp; {props.votes} </p>
+      <button onClick={handleDeleteComment}>Delete Comment</button>}
     </li>
   );
 };
