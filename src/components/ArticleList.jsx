@@ -1,25 +1,39 @@
 import { fetchArticles, fetchTopics } from "../api-utils";
 import { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
-import "../CSS_files/ArticleList.css"
+import "../CSS_files/ArticleList.css";
 
 const ArticleList = (props) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTopic, setCurrentTopic] = useState("All");
   const [topics, setTopics] = useState([]);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderBy, setOrderBy] = useState("desc");
 
   const handleChangeTopic = (event) => {
     setIsLoading(true);
     setCurrentTopic(event.target.value);
   };
 
+  const handleChangeSortBy = (event) => {
+    setIsLoading(true);
+    setSortBy(event.target.value);
+  };
+
+  const handleChangeOrderBy = (event) => {
+    setIsLoading(true);
+    setOrderBy(event.target.value);
+  };
+
   useEffect(() => {
-    fetchArticles(currentTopic).then((articleData) => {
-      setArticles(articleData);
-      setIsLoading(false);
-    });
-  }, [currentTopic]);
+    fetchArticles(currentTopic, sortBy, orderBy)
+      .then((articleData) => {
+        setArticles(articleData);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, [currentTopic, sortBy, orderBy]);
 
   useEffect(() => {
     fetchTopics().then((topicData) => {
@@ -29,7 +43,7 @@ const ArticleList = (props) => {
 
   return (
     <div>
-      <label htmlFor="topics">Choose a topic:</label>
+      <label htmlFor="topics">Filter by topic &nbsp;&nbsp;</label>
 
       <select
         value={currentTopic}
@@ -44,10 +58,39 @@ const ArticleList = (props) => {
           </option>
         ))}
       </select>
+
+      <label htmlFor="sort_by">Sort by &nbsp;&nbsp;</label>
+
+      <select
+        value={sortBy}
+        onChange={handleChangeSortBy}
+        name="sortBy"
+        id="sortBy"
+      >
+        <option value="title">Title</option>
+        <option value="topic">Topic</option>
+        <option value="author">Author</option>
+        <option value="created_at">Date</option>
+        <option value="votes">Votes</option>
+        <option value="comment_count">Comments</option>
+      </select>
+
+      <label htmlFor="orderBy">Order&nbsp;&nbsp;</label>
+
+      <select
+        value={orderBy}
+        onChange={handleChangeOrderBy}
+        name="orderBy"
+        id="orderBy"
+      >
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      
       {isLoading ? (
         <p> Loading...</p>
       ) : (
-        <ul>
+        <ul class="ArticleList">
           {articles.map((article) => {
             return <ArticleCard {...article} key={article.article_id} />;
           })}
