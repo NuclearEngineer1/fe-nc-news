@@ -1,7 +1,7 @@
 import { postComment } from "../api-utils";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import "../CSS_files/CommentAdder.css"
+import "../CSS_files/CommentAdder.css";
 
 const CommentAdder = (props) => {
   const { article_id } = useParams();
@@ -17,19 +17,29 @@ const CommentAdder = (props) => {
           body: commentBody,
           created_at: Date.now(),
           votes: 0,
-          article_id: article_id
+          article_id: article_id,
         },
         ...currComments,
       ];
     });
     setCommentBody("");
-    postComment(commentBody, article_id).catch((err) => {
-      console.log(err);
-      setIsError(true)
-      props.setCommentData((currComments) => {
-        return currComments.slice(1, currComments.length)
+    postComment(commentBody, article_id)
+      .then((comment) => {
+        console.log(comment)
+        props.setCommentData((currComments) => {
+          return [
+            comment.data,
+            ...currComments.slice(1)
+          ] 
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+        props.setCommentData((currComments) => {
+          return currComments.slice(1, currComments.length);
+        });
       });
-    });
   };
 
   if (isError) {
@@ -40,17 +50,17 @@ const CommentAdder = (props) => {
     );
   } else {
     return (
-        <form onSubmit={handleSubmit} class="CommentAdder">
-          <label htmlFor="name">Add comment (max 250 characters):</label>
+      <form onSubmit={handleSubmit} class="CommentAdder">
+        <label htmlFor="name">Add comment (max 250 characters):</label>
 
-          <input
-            onChange={(event) => setCommentBody(event.target.value)}
-            type="text"
-            maxLength="250"
-          ></input>
+        <input
+          onChange={(event) => setCommentBody(event.target.value)}
+          type="text"
+          maxLength="250"
+        ></input>
 
-          <input type="submit" value="Add Comment"></input>
-        </form>
+        <input type="submit" value="Add Comment"></input>
+      </form>
     );
   }
 };

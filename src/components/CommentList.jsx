@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
-import { fetchComments } from "../api-utils"
+import { fetchComments } from "../api-utils";
 import CommentAdder from "./CommentAdder";
-import "../CSS_files/CommentList.css"
+import "../CSS_files/CommentList.css";
 
 const CommentList = (props) => {
   const { article_id } = useParams();
@@ -13,11 +13,12 @@ const CommentList = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchComments(article_id).then((res) => {
-    setCommentData(res)
-    setIsLoading(false);
-    })
-    .catch((err) => console.log(err));
+    fetchComments(article_id)
+      .then((res) => {
+        setCommentData(res);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
   }, [article_id]);
 
   if (isLoading) {
@@ -29,7 +30,15 @@ const CommentList = (props) => {
         <CommentAdder setCommentData={setCommentData} />
         <ul class="CommentList">
           {commentData.map((comment) => {
-            return <CommentCard {...comment} key={comment.comment_id} setCommentData={setCommentData} commentData={commentData} setIsLoading={setIsLoading} />;
+            return (
+              <CommentCard
+                {...comment}
+                key={comment.comment_id}
+                setCommentData={setCommentData}
+                commentData={commentData}
+                setIsLoading={setIsLoading}
+              />
+            );
           })}
         </ul>
       </div>
