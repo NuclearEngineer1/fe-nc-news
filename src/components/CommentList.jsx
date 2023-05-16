@@ -11,22 +11,15 @@ const CommentList = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [isError, setIsError] = useState(false)
-
   useEffect(() => {
     fetchComments(article_id).then((res) => {
     setCommentData(res)
     setIsLoading(false);
     })
-      .catch((err) => {
-        console.log(err)
-        setIsError(true)
-      });
+    .catch((err) => console.log(err));
   }, [article_id]);
 
-  if (isError) {
-    return (<p></p>)
-  } else if (isLoading) {
+  if (isLoading) {
     return <p>Loading...</p>;
   } else {
     return (

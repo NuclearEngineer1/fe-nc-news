@@ -32,7 +32,7 @@ const ArticleList = (props) => {
         setArticles(articleData);
         setIsLoading(false);
       })
-      .catch((err) => console.log(err.response.msg));
+      .catch((err) => console.log(err));
   }, [currentTopic, sortBy, orderBy]);
 
   useEffect(() => {
